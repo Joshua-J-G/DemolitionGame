@@ -35,12 +35,13 @@ public class FirstCountdown : MonoBehaviour
     public GameObject ENDPOINT;
 
     float nextleveltime = 3f;
-    
+
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        TotalTime = Gamemanager.instance.time;
+        CoundownBomb.text = TotalTime.ToString();
     }
 
     // Update is called once per frame
@@ -69,24 +70,66 @@ public class FirstCountdown : MonoBehaviour
 
         if(((float)Gamemanager.instance.DestroyedItemsInSystem / (float)Gamemanager.instance.AmountOfItemsInSystem) * 100f == 100)
         {
+            PercentageDestroyed.text = (((float)Gamemanager.instance.DestroyedItemsInSystem / (float)Gamemanager.instance.AmountOfItemsInSystem) * 100f).ToString() + "%";
+            Gamemanager.instance.CanPlayerMove = false;
             stoptimer = true;
             Gamemanager.instance.RoundEnded((int)((float)Gamemanager.instance.DestroyedItemsInSystem / (float)Gamemanager.instance.AmountOfItemsInSystem) * 100, (int)Mathf.Round(TotalTime));
             ENDPOINT.SetActive(true);
             nextleveltime -= Time.deltaTime;
             if (nextleveltime <= 0)
             {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+                Gamemanager.instance.currentlevel++;
+                if (Gamemanager.instance.currentlevel == Gamemanager.instance.levels)
+                {
+                    Gamemanager.instance.currentlevel = 0;
+                    Gamemanager.instance.time--;
+                    SceneManager.LoadScene(Gamemanager.instance.currentlevel);
+                }
+                else
+                {
+
+                    SceneManager.LoadScene(Gamemanager.instance.currentlevel);
+                }
             }
         }
 
         if(TotalTime <= 0)
         {
+            PercentageDestroyed.text = (((float)Gamemanager.instance.DestroyedItemsInSystem / (float)Gamemanager.instance.AmountOfItemsInSystem) * 100f).ToString() + "%";
+            Gamemanager.instance.CanPlayerMove = false;
+
             stoptimer = true;
             Gamemanager.instance.RoundEnded((int)((float)Gamemanager.instance.DestroyedItemsInSystem / (float)Gamemanager.instance.AmountOfItemsInSystem) * 100, (int)Mathf.Round(TotalTime));
             ENDPOINT.SetActive(true);
             nextleveltime -= Time.deltaTime;
-            if(nextleveltime <= 0) {
-                SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+
+          
+
+            if (nextleveltime <= 0) {
+
+                if (((float)Gamemanager.instance.DestroyedItemsInSystem / (float)Gamemanager.instance.AmountOfItemsInSystem) * 100f <= 70)
+                {
+                    Gamemanager.instance.GameEnd();
+              
+                }else
+                {
+                    Gamemanager.instance.currentlevel++;
+                    if (Gamemanager.instance.currentlevel == Gamemanager.instance.levels)
+                    {
+                        Gamemanager.instance.currentlevel = 0;
+                        Gamemanager.instance.time--;
+                        SceneManager.LoadScene(Gamemanager.instance.currentlevel);
+                    }
+                    else
+                    {
+
+                        SceneManager.LoadScene(Gamemanager.instance.currentlevel);
+                    }
+
+                }
+
+
+
             }
         }
 
@@ -97,7 +140,7 @@ public class FirstCountdown : MonoBehaviour
 
         TotalAmomnt.text = Gamemanager.instance.AmountOfItemsInSystem.ToString();
         TotalDestroyed.text = Gamemanager.instance.DestroyedItemsInSystem.ToString();
-        PercentageDestroyed.text = ((int)((float)Gamemanager.instance.DestroyedItemsInSystem / (float)Gamemanager.instance.AmountOfItemsInSystem) * 100).ToString() + "%";
+        
         TimeLeft.text = Mathf.RoundToInt(TotalTime).ToString();
         Points.text = Gamemanager.instance.TotalPoints.ToString();
     }
