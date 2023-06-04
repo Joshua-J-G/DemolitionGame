@@ -20,6 +20,10 @@ public class PlayerCam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (!Gamemanager.instance.CanPlayerMove)
+        {
+            return;
+        }
         float MX = Input.GetAxis("Mouse X")* MouseSensitivity * Time.deltaTime;
         float MY = Input.GetAxis("Mouse Y") * MouseSensitivity * Time.deltaTime;
 

@@ -23,12 +23,17 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        Gamemanager.instance.RoundStarted();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if(!Gamemanager.instance.CanPlayerMove)
+        {
+            return;
+        }
+
         float x, y;
         x = Input.GetAxisRaw("Horizontal") * Speed * Time.deltaTime;
         y = Input.GetAxisRaw("Vertical") * Speed * Time.deltaTime;

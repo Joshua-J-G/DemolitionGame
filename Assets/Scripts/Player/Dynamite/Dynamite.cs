@@ -30,6 +30,10 @@ public class Dynamite : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0) && transform.parent != null)
         {
+            if (!Gamemanager.instance.CanPlayerMove)
+            {
+                return;
+            }
             transform.parent = null;
             RB.isKinematic = false;
             RB.AddForce(transform.forward * thowDistance);
