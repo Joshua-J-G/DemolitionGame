@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using System.Drawing;
 using Unity.Mathematics;
-using UnityEditor.SearchService;
+
 using UnityEngine.SceneManagement;
 
 public class FirstCountdown : MonoBehaviour
@@ -81,7 +81,7 @@ public class FirstCountdown : MonoBehaviour
                 Gamemanager.instance.currentlevel++;
                 if (Gamemanager.instance.currentlevel == Gamemanager.instance.levels)
                 {
-                    Gamemanager.instance.currentlevel = 0;
+                    Gamemanager.instance.currentlevel = 1;
                     Gamemanager.instance.time--;
                     SceneManager.LoadScene(Gamemanager.instance.currentlevel);
                 }
@@ -116,7 +116,7 @@ public class FirstCountdown : MonoBehaviour
                     Gamemanager.instance.currentlevel++;
                     if (Gamemanager.instance.currentlevel == Gamemanager.instance.levels)
                     {
-                        Gamemanager.instance.currentlevel = 0;
+                        Gamemanager.instance.currentlevel = 1;
                         Gamemanager.instance.time--;
                         SceneManager.LoadScene(Gamemanager.instance.currentlevel);
                     }

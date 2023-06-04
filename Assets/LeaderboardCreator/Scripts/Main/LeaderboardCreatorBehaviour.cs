@@ -3,8 +3,8 @@ using System.Collections;
 using System.Collections.Generic;
 using Dan.Enums;
 using Dan.Models;
-using Unity.Plastic.Newtonsoft.Json;
-using Unity.Plastic.Newtonsoft.Json;
+using Newtonsoft.Json;
+
 using UnityEngine;
 using UnityEngine.Networking;
 

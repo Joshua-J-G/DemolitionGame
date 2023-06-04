@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerCam : MonoBehaviour
 {
     [Header("Player Cam Settings")]
-    [SerializeField] private float MouseSensitivity = 100f;
+     private float MouseSensitivity = 100f;
 
     [SerializeField] private Transform PlayerBody;
 
@@ -15,6 +15,7 @@ public class PlayerCam : MonoBehaviour
     void Start()
     {
         Cursor.lockState = CursorLockMode.Locked;
+        MouseSensitivity = StartGame.instance.MouseSensitivity;
     }
 
     // Update is called once per frame

@@ -13,6 +13,11 @@ public class uihandle : MonoBehaviour
     [SerializeField]
     public TMP_InputField inputName;
     public TMP_InputField inputField;
+
+    public Slider slider;
+
+    public TMP_Text MouiseSensitivity;
+
     public TMP_Text score;
 
     private void Awake()

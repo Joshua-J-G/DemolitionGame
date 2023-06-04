@@ -19,8 +19,8 @@ public class Gamemanager : MonoBehaviour
     public float time = 10f;
 
 
-    public int levels = 3;
-    public int currentlevel = 0;
+    public int levels = 5;
+    public int currentlevel = 1;
 
     private void Awake()
     {
@@ -52,7 +52,7 @@ public class Gamemanager : MonoBehaviour
 
     public void GameEnd()
     {
-        SceneManager.LoadScene(4);
+        SceneManager.LoadScene(0);
 
         uihandle.instance.inputName.text = StartGame.instance.Name;
 
@@ -61,7 +61,7 @@ public class Gamemanager : MonoBehaviour
             StartGame.instance.highestscore = TotalPoints;
         }
 
-        uihandle.instance.score.text = StartGame.instance.highestscore.ToString();
+  
   
         Leaderboard.Instance.SetLeaderboardEntry(StartGame.instance.Name, TotalPoints);
 

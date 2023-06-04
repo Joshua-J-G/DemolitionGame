@@ -1,5 +1,5 @@
 ﻿using Dan.Main;
-using Unity.Plastic.Newtonsoft.Json;
+using Newtonsoft.Json;
 
 namespace Dan.Models
 {
