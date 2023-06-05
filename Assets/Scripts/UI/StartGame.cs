@@ -32,7 +32,7 @@ public class StartGame : MonoBehaviour
 
         Destroy(Gamemanager.instance.gameObject);
 
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(Gamemanager.instance.Tutorial);
     }
 
     public void UpdateSliderMouseSensitivity(Single mousesensitvity)

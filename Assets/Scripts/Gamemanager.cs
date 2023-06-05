@@ -5,6 +5,13 @@ using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.SocialPlatforms.Impl;
 
+public enum Levels
+{
+    Small,
+    Medium,
+    Large
+}
+
 public class Gamemanager : MonoBehaviour
 {
     public static Gamemanager instance;
@@ -19,8 +26,22 @@ public class Gamemanager : MonoBehaviour
     public float time = 10f;
 
 
-    public int levels = 5;
-    public int currentlevel = 1;
+
+
+
+    public Levels LevelSize;
+
+    public string Tutorial;
+
+    public string MainMenu;
+    public string Shop;
+
+    public string CurrentLevel;
+
+    public List<string> SmallLevels = new List<string>();
+    public List<string> MediumLevels = new List<string>();
+    public List<string> LargeLevels = new List<string>();
+
 
     private void Awake()
     {

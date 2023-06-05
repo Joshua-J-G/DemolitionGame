@@ -6,6 +6,7 @@ using System.Drawing;
 using Unity.Mathematics;
 
 using UnityEngine.SceneManagement;
+using System.Linq;
 
 public class FirstCountdown : MonoBehaviour
 {
@@ -42,6 +43,8 @@ public class FirstCountdown : MonoBehaviour
     {
         TotalTime = Gamemanager.instance.time;
         CoundownBomb.text = TotalTime.ToString();
+
+        Gamemanager.instance.CurrentLevel = SceneManager.GetActiveScene().name;
     }
 
     // Update is called once per frame
@@ -78,17 +81,27 @@ public class FirstCountdown : MonoBehaviour
             nextleveltime -= Time.deltaTime;
             if (nextleveltime <= 0)
             {
-                Gamemanager.instance.currentlevel++;
-                if (Gamemanager.instance.currentlevel == Gamemanager.instance.levels)
+                switch (Gamemanager.instance.LevelSize)
                 {
-                    Gamemanager.instance.currentlevel = 1;
-                    Gamemanager.instance.time--;
-                    SceneManager.LoadScene(Gamemanager.instance.currentlevel);
-                }
-                else
-                {
+                    case Levels.Small:
 
-                    SceneManager.LoadScene(Gamemanager.instance.currentlevel);
+                        if (Gamemanager.instance.CurrentLevel == Gamemanager.instance.SmallLevels.Last())
+                        {
+                            SceneManager.LoadScene(Gamemanager.instance.Shop);
+                        }
+                        else
+                        {
+                            SceneManager.LoadScene(Gamemanager.instance.SmallLevels[Gamemanager.instance.SmallLevels.IndexOf(Gamemanager.instance.CurrentLevel) + 1]);
+                        }
+
+
+
+                        break;
+                    case Levels.Medium:
+                        break;
+                    case Levels.Large:
+                        break;
+
                 }
             }
         }
@@ -113,19 +126,30 @@ public class FirstCountdown : MonoBehaviour
               
                 }else
                 {
-                    Gamemanager.instance.currentlevel++;
-                    if (Gamemanager.instance.currentlevel == Gamemanager.instance.levels)
+                    switch(Gamemanager.instance.LevelSize)
                     {
-                        Gamemanager.instance.currentlevel = 1;
-                        Gamemanager.instance.time--;
-                        SceneManager.LoadScene(Gamemanager.instance.currentlevel);
-                    }
-                    else
-                    {
+                        case Levels.Small:
 
-                        SceneManager.LoadScene(Gamemanager.instance.currentlevel);
-                    }
+                        if(Gamemanager.instance.CurrentLevel == Gamemanager.instance.SmallLevels.Last())
+                        {
+                                SceneManager.LoadScene(Gamemanager.instance.Shop);
+                        }else
+                        {
 
+
+                                SceneManager.LoadScene(Gamemanager.instance.SmallLevels[Gamemanager.instance.SmallLevels.IndexOf(Gamemanager.instance.CurrentLevel) + 1]);
+                        }
+
+
+
+                        break;
+                        case Levels.Medium:
+                            break;
+                        case Levels.Large:
+                            break;
+
+                    }
+                    
                 }
 
 
