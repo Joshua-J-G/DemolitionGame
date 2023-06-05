@@ -55,10 +55,11 @@ public class StartGame : MonoBehaviour
         {
 
             Destroy(gameObject);
-            uihandle.instance.inputName.text = StartGame.instance.Name;
+            BombRushUIManager.instance.Username.text = StartGame.instance.Name;
             Debug.Log("Called");
-            uihandle.instance.inputName.ForceLabelUpdate();
-            uihandle.instance.score.text = StartGame.instance.highestscore.ToString();
+            BombRushUIManager.instance.Username.ForceLabelUpdate();
+            BombRushUIManager.instance.MaxScoreboard.text = StartGame.instance.highestscore.ToString();
+       
         }
     }
     // Update is called once per frame

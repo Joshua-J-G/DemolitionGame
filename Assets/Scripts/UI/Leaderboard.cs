@@ -14,7 +14,35 @@ public class Leaderboard : MonoBehaviour
     [SerializeField]
     private List<TextMeshProUGUI> scores;
 
+    public bool isOnline = true;
+
     private string publicKey = "d31e8cfb72bf9671b6a5ed425518a85336ced6bcf191757a18893636390c307b";
+
+    // secret key 725b90f27c469d7c9d763702a5a947f7ac52dbf64fa5bcb620c11e13cd807c324903af0f72fc0febe60653e48b32e00a58522ca536a2c8ae155155641d59282b9522b0ee7c0e05fdcc8edd9c4fc7d3fcbbd10454f74b94e4774e742c8802e89779462a21182ef6da7e7008162c1e3885b44de8bc21b5beb543f02e09343c1408
+
+    public void SwapLeaderboards()
+    {
+        isOnline = !isOnline;
+
+        if (isOnline)
+        {
+            GetLeaderBoard();
+        }
+        else
+        {
+            foreach (TMP_Text t in names)
+            {
+                t.text = "";
+            }
+
+            foreach (TMP_Text t in scores)
+            {
+                t.text = "";
+            }
+        }
+
+    }
+
 
     public void GetLeaderBoard()
     {

@@ -73,9 +73,9 @@ public class Gamemanager : MonoBehaviour
 
     public void GameEnd()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene(MainMenu);
 
-        uihandle.instance.inputName.text = StartGame.instance.Name;
+        BombRushUIManager.instance.Username.text = StartGame.instance.Name;
 
         if (StartGame.instance.highestscore < TotalPoints)
         {

@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerCam : MonoBehaviour
@@ -35,4 +36,6 @@ public class PlayerCam : MonoBehaviour
         PlayerBody.Rotate(Vector3.up * MX);
         
     }
+
+
 }
