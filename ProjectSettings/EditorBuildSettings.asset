@@ -12,13 +12,13 @@ EditorBuildSettings:
     path: Assets/Scenes/DemoScene.unity
     guid: 451bb8c55027228449aed3bd61d7809e
   - enabled: 1
-    path: Assets/Scenes/Level2.unity
+    path: Assets/Scenes/Small Level/Level2.unity
     guid: 77def4353930cf94a976b582ea0c58d0
   - enabled: 1
-    path: Assets/Scenes/Level3.unity
+    path: Assets/Scenes/Small Level/Level3.unity
     guid: 8ad4fe47da56f0e4e912fa828fb51a3d
   - enabled: 1
-    path: Assets/Scenes/Level4.unity
+    path: Assets/Scenes/Small Level/Level4.unity
     guid: 8a543e7c9de835c458be2d616d533ba1
   - enabled: 1
     path: Assets/Scenes/Level5.unity
