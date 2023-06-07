@@ -35,11 +35,7 @@ public class StartGame : MonoBehaviour
         SceneManager.LoadScene(Gamemanager.instance.Tutorial);
     }
 
-    public void UpdateSliderMouseSensitivity(Single mousesensitvity)
-    {
-        MouseSensitivity = uihandle.instance.slider.value;
-        uihandle.instance.MouiseSensitivity.text = MouseSensitivity.ToString();
-    }
+
 
     // Start is called before the first frame update
     private void Awake()

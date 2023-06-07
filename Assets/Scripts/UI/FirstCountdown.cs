@@ -7,6 +7,7 @@ using Unity.Mathematics;
 
 using UnityEngine.SceneManagement;
 using System.Linq;
+using UnityEngine.UI;
 
 public class FirstCountdown : MonoBehaviour
 {
@@ -20,8 +21,6 @@ public class FirstCountdown : MonoBehaviour
     public TMP_Text Percentage;
 
 
-    public TMP_Text TotalAmomnt;
-    public TMP_Text TotalDestroyed;
     public TMP_Text PercentageDestroyed;
     public TMP_Text TimeLeft;
     public TMP_Text Points;
@@ -35,8 +34,16 @@ public class FirstCountdown : MonoBehaviour
 
     public GameObject ENDPOINT;
 
+    public GameObject SetPoint,Setpoint2;
+
+    public GameObject TopBar,BottomBar;
+
     float nextleveltime = 3f;
 
+    public TMP_Text Grade;
+
+    public Image SuccessImage;
+    public Sprite sus, fail;
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +57,12 @@ public class FirstCountdown : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
+
+
+
+
+
         CountdownBeforereal.text = (Mathf.Round(time)+1).ToString();
         if(time <= 0)
         {
@@ -73,12 +86,16 @@ public class FirstCountdown : MonoBehaviour
 
         if(((float)Gamemanager.instance.DestroyedItemsInSystem / (float)Gamemanager.instance.AmountOfItemsInSystem) * 100f == 100)
         {
+            PlayAnimation();
+            
             PercentageDestroyed.text = (((float)Gamemanager.instance.DestroyedItemsInSystem / (float)Gamemanager.instance.AmountOfItemsInSystem) * 100f).ToString() + "%";
             Gamemanager.instance.CanPlayerMove = false;
             stoptimer = true;
+            GradeCaculator();
             Gamemanager.instance.RoundEnded((int)((float)Gamemanager.instance.DestroyedItemsInSystem / (float)Gamemanager.instance.AmountOfItemsInSystem) * 100, (int)Mathf.Round(TotalTime));
             ENDPOINT.SetActive(true);
             nextleveltime -= Time.deltaTime;
+           
             if (nextleveltime <= 0)
             {
                 switch (Gamemanager.instance.LevelSize)
@@ -108,15 +125,18 @@ public class FirstCountdown : MonoBehaviour
 
         if(TotalTime <= 0)
         {
+            PlayAnimation();
             PercentageDestroyed.text = (((float)Gamemanager.instance.DestroyedItemsInSystem / (float)Gamemanager.instance.AmountOfItemsInSystem) * 100f).ToString() + "%";
             Gamemanager.instance.CanPlayerMove = false;
 
             stoptimer = true;
+            GradeCaculator();
             Gamemanager.instance.RoundEnded((int)((float)Gamemanager.instance.DestroyedItemsInSystem / (float)Gamemanager.instance.AmountOfItemsInSystem) * 100, (int)Mathf.Round(TotalTime));
             ENDPOINT.SetActive(true);
             nextleveltime -= Time.deltaTime;
-
           
+
+
 
             if (nextleveltime <= 0) {
 
@@ -157,15 +177,89 @@ public class FirstCountdown : MonoBehaviour
             }
         }
 
-        Percentage.text = (((float)Gamemanager.instance.DestroyedItemsInSystem/(float)Gamemanager.instance.AmountOfItemsInSystem) * 100f).ToString() + "%";
+        Percentage.text = Mathf.RoundToInt((((float)Gamemanager.instance.DestroyedItemsInSystem/(float)Gamemanager.instance.AmountOfItemsInSystem) * 100f)).ToString() + "%";
 
 
 
 
-        TotalAmomnt.text = Gamemanager.instance.AmountOfItemsInSystem.ToString();
-        TotalDestroyed.text = Gamemanager.instance.DestroyedItemsInSystem.ToString();
+
         
         TimeLeft.text = Mathf.RoundToInt(TotalTime).ToString();
         Points.text = Gamemanager.instance.TotalPoints.ToString();
+    }
+
+    float timesw = 0f;
+
+    public void GradeCaculator()
+    {
+
+        if ((((float)Gamemanager.instance.DestroyedItemsInSystem / (float)Gamemanager.instance.AmountOfItemsInSystem) * 100f) < 90)
+        {
+            //Grade C
+            Grade.text = "C";
+            SuccessImage.sprite = sus;
+        }
+
+        if ((((float)Gamemanager.instance.DestroyedItemsInSystem / (float)Gamemanager.instance.AmountOfItemsInSystem) * 100f) < 70)
+        {
+            //Grade D
+            Grade.text = "D";
+            SuccessImage.sprite = fail;
+        }
+
+        if ((((float)Gamemanager.instance.DestroyedItemsInSystem / (float)Gamemanager.instance.AmountOfItemsInSystem) * 100f) == 0)
+        {
+            //Grade E
+            Grade.text = "E";
+            SuccessImage.sprite = fail;
+        }
+
+      
+
+
+        if (Mathf.RoundToInt(TotalTime) >= 0 && PercentageDestroyed.text == "100%")
+        {
+            //Grade B
+            Grade.text = "B";
+            Gamemanager.instance.TotalPoints += 15;
+            SuccessImage.sprite = sus;
+        }
+
+        if (Mathf.RoundToInt(TotalTime) >= 3 && PercentageDestroyed.text == "100%")
+        {
+            //Grade A
+            Grade.text = "A";
+            Gamemanager.instance.TotalPoints += 20;
+            SuccessImage.sprite = sus;
+        }
+
+        if (Mathf.RoundToInt(TotalTime) >= 6 && PercentageDestroyed.text == "100%")
+        {
+            //Grade S
+            Grade.text = "S";
+            Gamemanager.instance.TotalPoints += 25;
+            SuccessImage.sprite = sus;
+        }
+
+        if (Mathf.RoundToInt(TotalTime) >= 9 && PercentageDestroyed.text == "100%")
+        {
+            //Grade S+
+            Grade.text = "S+";
+            Gamemanager.instance.TotalPoints += 30;
+            SuccessImage.sprite = sus;
+        }
+
+
+    }
+
+    public void PlayAnimation()
+    {
+        timesw += Time.deltaTime;
+        timesw = Mathf.Clamp(timesw,0,2.5f);
+
+        float ratio = timesw / 2;
+
+        TopBar.transform.position = Vector3.Lerp(TopBar.transform.position, SetPoint.transform.position, ratio);
+        BottomBar.transform.position = Vector3.Lerp(BottomBar.transform.position, Setpoint2.transform.position, ratio);
     }
 }
