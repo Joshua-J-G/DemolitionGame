@@ -133,7 +133,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d66b35ba33fe2e34cb4b062d89a253fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MouseSensitivity: 500
   PlayerBody: {fileID: 677863716318498402}
 --- !u!1 &677863716318498412
 GameObject:
@@ -209,6 +208,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 8
   CC: {fileID: 677863716318498403}
+  Dynamite: {fileID: 677863716746652571}
 --- !u!1 &677863716542149024
 GameObject:
   m_ObjectHideFlags: 0
