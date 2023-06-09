@@ -12,11 +12,12 @@ using UnityEngine.UI;
 public class FirstCountdown : MonoBehaviour
 {
     public TMP_Text CountdownBeforereal;
+    public TMP_Text CountdownBeforereal2;
 
     public TMP_Text CoundownBomb;
 
     public GameObject TimeHandel1;
-
+    public GameObject TimeHandel2;
 
     public TMP_Text Percentage;
 
@@ -64,11 +65,12 @@ public class FirstCountdown : MonoBehaviour
 
 
         CountdownBeforereal.text = (Mathf.Round(time)+1).ToString();
+        CountdownBeforereal2.text = (Mathf.Round(time)+1).ToString();
         if(time <= 0)
         {
             TimeHandel1.SetActive(false);
-
-            if (!stoptimer)
+            TimeHandel2.SetActive(false);
+            if (!stoptimer && !Gamemanager.instance.IsTutorialMode)
             {
                 TotalTime -= Time.deltaTime;
                 CoundownBomb.text = (Mathf.Round(TotalTime)).ToString();
@@ -88,7 +90,7 @@ public class FirstCountdown : MonoBehaviour
         {
             PlayAnimation();
             
-            PercentageDestroyed.text = (((float)Gamemanager.instance.DestroyedItemsInSystem / (float)Gamemanager.instance.AmountOfItemsInSystem) * 100f).ToString() + "%";
+            PercentageDestroyed.text = Mathf.RoundToInt((((float)Gamemanager.instance.DestroyedItemsInSystem / (float)Gamemanager.instance.AmountOfItemsInSystem) * 100f)).ToString() + "%";
             Gamemanager.instance.CanPlayerMove = false;
             stoptimer = true;
             GradeCaculator();
@@ -126,7 +128,7 @@ public class FirstCountdown : MonoBehaviour
         if(TotalTime <= 0)
         {
             PlayAnimation();
-            PercentageDestroyed.text = (((float)Gamemanager.instance.DestroyedItemsInSystem / (float)Gamemanager.instance.AmountOfItemsInSystem) * 100f).ToString() + "%";
+            PercentageDestroyed.text = Mathf.RoundToInt((((float)Gamemanager.instance.DestroyedItemsInSystem / (float)Gamemanager.instance.AmountOfItemsInSystem) * 100f)).ToString() + "%";
             Gamemanager.instance.CanPlayerMove = false;
 
             stoptimer = true;
@@ -221,7 +223,7 @@ public class FirstCountdown : MonoBehaviour
         {
             //Grade B
             Grade.text = "B";
-            Gamemanager.instance.TotalPoints += 15;
+            
             SuccessImage.sprite = sus;
         }
 
@@ -229,7 +231,7 @@ public class FirstCountdown : MonoBehaviour
         {
             //Grade A
             Grade.text = "A";
-            Gamemanager.instance.TotalPoints += 20;
+            
             SuccessImage.sprite = sus;
         }
 
@@ -237,7 +239,7 @@ public class FirstCountdown : MonoBehaviour
         {
             //Grade S
             Grade.text = "S";
-            Gamemanager.instance.TotalPoints += 25;
+            
             SuccessImage.sprite = sus;
         }
 
@@ -245,7 +247,7 @@ public class FirstCountdown : MonoBehaviour
         {
             //Grade S+
             Grade.text = "S+";
-            Gamemanager.instance.TotalPoints += 30;
+            
             SuccessImage.sprite = sus;
         }
 

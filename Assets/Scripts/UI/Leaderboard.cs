@@ -3,6 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using Dan.Main;
+using System.IO;
+using System.Linq;
+
+struct scoreboardsetup
+{
+    public string name;
+    public int score;
+}
 
 public class Leaderboard : MonoBehaviour
 {
@@ -30,22 +38,77 @@ public class Leaderboard : MonoBehaviour
         }
         else
         {
-            foreach (TMP_Text t in names)
-            {
-                t.text = "";
-            }
-
-            foreach (TMP_Text t in scores)
-            {
-                t.text = "";
-            }
+            GetlocalLeaderboard();
         }
 
+    }
+
+    int namepos = 0;
+    public void GetlocalLeaderboard()
+    {
+        namepos = 0;
+
+
+        foreach (TMP_Text t in names)
+        {
+            t.text = "";
+        }
+
+        foreach (TMP_Text t in scores)
+        {
+            t.text = "";
+        }
+
+
+        List<string> lines = new List<string>();
+        lines.AddRange(File.ReadAllLines(Application.persistentDataPath + "/Leaderboard.txt"));
+
+        List<scoreboardsetup> orddered = new List<scoreboardsetup>();
+        List<int> holdingScore = new List<int>();
+        foreach (string s in lines.ToArray())
+        {
+            string[] split = s.Split(",");
+            scoreboardsetup w = new scoreboardsetup();
+            
+            w.name = split[0];
+            w.score = int.Parse(split[1]);
+            holdingScore.Add(int.Parse(split[1]));
+            orddered.Add(w);
+        }
+
+        orddered = orddered.OrderBy(c => c.score).ToList();
+        orddered.Reverse();
+        foreach (TMP_Text t in names)
+        {
+            if (namepos < orddered.ToArray().Length)
+            {
+                t.text = orddered[namepos].name;
+            }
+            namepos++;
+        }
+        namepos = 0;
+        foreach (TMP_Text t in scores)
+        {
+            if (namepos < orddered.ToArray().Length)
+            {
+                t.text = orddered[namepos].score.ToString();
+            }
+            namepos++;
+        }
     }
 
 
     public void GetLeaderBoard()
     {
+        foreach (TMP_Text t in names)
+        {
+            t.text = "";
+        }
+
+        foreach (TMP_Text t in scores)
+        {
+            t.text = "";
+        }
         LeaderboardCreator.GetLeaderboard(publicKey, ((msg) =>
         {
             int looplength = (msg.Length < names.Count) ? msg.Length : names.Count;
@@ -57,8 +120,45 @@ public class Leaderboard : MonoBehaviour
         }));
     }
 
-    public void SetLeaderboardEntry(string username,int score)
+    int localscoreboard = 0;
+
+    bool playeraddedtoleaderboard = false;
+
+    public void SetLeaderboardEntry(string username, int score)
     {
+        Debug.Log(Application.persistentDataPath + "/Leaderboard.txt");
+        localscoreboard = 0;
+        playeraddedtoleaderboard = false; 
+
+        if (System.IO.File.Exists(Application.persistentDataPath + "/Leaderboard.txt"))
+        {
+            List<string> lines = new List<string>();
+            lines.AddRange(File.ReadAllLines(Application.persistentDataPath + "/Leaderboard.txt"));
+            foreach (string s in lines.ToArray())
+            {
+                string[] split = s.Split(",");
+                if (split[0].ToLower() == username.ToLower())
+                {
+                    playeraddedtoleaderboard = true;
+                    if (int.Parse(split[1]) < score)
+                    {
+                        lines[localscoreboard] = username + "," + score;
+                    }
+                }
+                localscoreboard++;
+            }
+
+
+            if(!playeraddedtoleaderboard)
+            {
+                lines.Add(username + "," + score);
+            }
+            File.WriteAllLines(Application.persistentDataPath + "/Leaderboard.txt", lines.ToArray());
+        }else
+        {
+            System.IO.File.WriteAllText(Application.persistentDataPath + "/Leaderboard.txt", username + ","+ score);
+        }
+
         LeaderboardCreator.UploadNewEntry(publicKey, username, score, ((msg) =>
         {
             

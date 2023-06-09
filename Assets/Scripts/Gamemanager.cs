@@ -25,6 +25,7 @@ public class Gamemanager : MonoBehaviour
 
     public float time = 10f;
 
+    public bool IsTutorialMode = false;
 
 
 

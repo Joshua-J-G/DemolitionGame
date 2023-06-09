@@ -15,6 +15,9 @@ public class StartGame : MonoBehaviour
 
     public float MouseSensitivity = 100f;
 
+    public float FOV = 60f;
+
+    public float Sound = 100f;
 
 
     public void SetName(string name)
@@ -26,13 +29,14 @@ public class StartGame : MonoBehaviour
     {
         if (Name == "" || Name == null)
         {
+            Debug.Log("setName");
             return;
         }
 
-
+        SceneManager.LoadScene(Gamemanager.instance.Tutorial);
         Destroy(Gamemanager.instance.gameObject);
 
-        SceneManager.LoadScene(Gamemanager.instance.Tutorial);
+       
     }
 
 

@@ -16,7 +16,8 @@ public class ButtonSlide : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
     // Start is called before the first frame update
     void Start()
     {
-        origionalPosition = OverlayText.transform.position;
+        origionalPosition = OverlayText.transform.position; 
+
     }
 
     public void PlayerHoverOverButton()
@@ -50,6 +51,7 @@ public class ButtonSlide : MonoBehaviour, IPointerEnterHandler, IPointerExitHand
 
     public void OnPointerEnter(PointerEventData eventData)
     {
+
         PlayerHoverOverButton();
     }
 

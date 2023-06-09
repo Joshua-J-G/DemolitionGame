@@ -10,7 +10,7 @@ public class PlayerSettings : MonoBehaviour
 
     int FOV = 60;
 
-    int MouseSensitivity = 50;
+    int MouseSensitivity = 500;
 
     int SoundVolume = 100;
 
@@ -27,6 +27,7 @@ public class PlayerSettings : MonoBehaviour
         {
             FOV = PlayerPrefs.GetInt("FOV");
             FOVS.value = FOV;
+            StartGame.instance.FOV = FOV;
             VFOV.text = FOV.ToString();
         }
 
@@ -34,7 +35,8 @@ public class PlayerSettings : MonoBehaviour
         {
             MouseSensitivity = PlayerPrefs.GetInt("MouseSensitivity");
             Mouse.value = MouseSensitivity;
-            VMouse.text = MouseSensitivity.ToString();
+            VMouse.text = (MouseSensitivity/10).ToString();
+            StartGame.instance.MouseSensitivity = MouseSensitivity;
         }
 
         if (PlayerPrefs.HasKey("SoundVolume"))
@@ -42,6 +44,7 @@ public class PlayerSettings : MonoBehaviour
             SoundVolume = PlayerPrefs.GetInt("SoundVolume");
             Audio.value = SoundVolume;
             VAudio.text = SoundVolume.ToString();
+            StartGame.instance.Sound = SoundVolume;
         }
     }
 
@@ -55,9 +58,9 @@ public class PlayerSettings : MonoBehaviour
 
     public void ChangeMouse()
     {
-        MouseSensitivity = (int)Mouse.value;
+        MouseSensitivity = (int)Mouse.value * 10;
     
-        VMouse.text = MouseSensitivity.ToString();
+        VMouse.text = (MouseSensitivity/10).ToString();
     }
 
 
@@ -103,6 +106,9 @@ public class PlayerSettings : MonoBehaviour
         PlayerPrefs.SetInt("SoundVolume", SoundVolume);
         PlayerPrefs.SetInt("MouseSensitivity", MouseSensitivity);
         PlayerPrefs.Save();
+        StartGame.instance.MouseSensitivity = MouseSensitivity;
+        StartGame.instance.FOV = FOV;
+        StartGame.instance.Sound = SoundVolume;
     }
 
     // Update is called once per frame

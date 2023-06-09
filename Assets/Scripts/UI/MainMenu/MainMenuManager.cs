@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
+
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public enum ScreenSpace
 {
@@ -19,6 +21,11 @@ public class MainMenuManager : MonoBehaviour
     public GameObject Offshoot;
     public GameObject Offshoot2;
     public GameObject Center;
+
+
+    [Header("Debug Menu")]
+    public KeyCode[] cheats = {KeyCode.UpArrow,KeyCode.UpArrow,KeyCode.DownArrow,KeyCode.DownArrow,KeyCode.LeftArrow,KeyCode.RightArrow,KeyCode.LeftArrow,KeyCode.RightArrow,KeyCode.A,KeyCode.B,KeyCode.KeypadEnter};
+    int index = 0;
 
     [Header("BombRush")]
     public AnimationCurve BombRushCurve;
@@ -136,6 +143,7 @@ public class MainMenuManager : MonoBehaviour
     {
         BombRushTitlePos = BombRushScreen.transform.position;
         SettingsTitlePos = SettingsScreen.transform.position;
+        index = 0;
     }
 
     public void GoBackToMainMenu()
@@ -168,9 +176,40 @@ public class MainMenuManager : MonoBehaviour
         timeSE = 0;
     }
 
+    public GameObject debugmenu;
+    bool cheatsmenuopen = false;
+
+    bool hasUpdatedScreen = false;
+
     // Update is called once per frame
     void Update()
     {
+
+        
+
+        if(Screen.fullScreen && !hasUpdatedScreen)
+        {
+            hasUpdatedScreen = true;
+            SceneManager.LoadScene(Gamemanager.instance.MainMenu);
+        }
+
+        if (Input.anyKeyDown)
+        {
+            if (Input.GetKeyDown(cheats[index]) && !cheatsmenuopen)
+            {
+                index++;
+            }else
+            {
+                index = 0;
+            }
+        }
+
+        if(index == cheats.Length)
+        {
+            cheatsmenuopen = true;
+            debugmenu.SetActive(true);
+
+        }
 
 
         if (inbombrushScreen)
