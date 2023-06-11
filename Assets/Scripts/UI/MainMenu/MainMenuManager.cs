@@ -45,6 +45,25 @@ public class MainMenuManager : MonoBehaviour
 
     public float SpeedOfBR = 1f;
 
+    [Header("Tactics")]
+    public AnimationCurve TacticsCurve;
+    public GameObject TacticsScreen;
+
+
+    public Vector3 TPositionOffset;
+
+    public Vector3 TTitlePos;
+
+
+    bool inTacticsScreen = false;
+    bool TacticsOpen = false;
+
+    float timeT = 0;
+    float LerpTimeT = 1f;
+
+    public float SpeedOfT = 1f;
+
+
     [Header("Settings")]
     public ParticleSystem Dust;
     public AnimationCurve SettingsCurve;
@@ -87,6 +106,23 @@ public class MainMenuManager : MonoBehaviour
         }
  
     }
+
+
+
+    public void TransitionToTactics()
+    {
+        float Lerpration = timeT / LerpTimeT;
+
+        TacticsScreen.transform.position = Vector3.Lerp(BombRushTitlePos, Offshoot.transform.position, BombRushCurve.Evaluate(Lerpration));
+        if (Lerpration == 1)
+        {
+            TacticsScreen.transform.position = Center.transform.position;
+        }
+
+    }
+
+
+
     bool particalsLaunched = false;
     public void TransitionToSettings()
     {
@@ -116,6 +152,19 @@ public class MainMenuManager : MonoBehaviour
         {
             bomScrenOpen = false;
             BombRushScreen.transform.position = BombRushTitlePos;
+        }
+    }
+
+
+    public void ResetToTactics()
+    {
+        float Lerpration = timeT / LerpTimeT;
+
+        TacticsScreen.transform.position = Vector3.Lerp(TacticsScreen.transform.position, BombRushTitlePos, Lerpration);
+        if (Lerpration == 1)
+        {
+            TacticsOpen = false;
+            TacticsScreen.transform.position = BombRushTitlePos;
         }
     }
 
@@ -159,6 +208,13 @@ public class MainMenuManager : MonoBehaviour
             inSettingsScreen = false;
             timeSE = 0;
         }
+
+
+        if (inTacticsScreen)
+        {
+            inTacticsScreen = false;
+            timeT = 0;
+        }
     }
 
     public void OpenBombScreen()
@@ -167,6 +223,14 @@ public class MainMenuManager : MonoBehaviour
         bomScrenOpen = true;
         Leaderboard.Instance.GetLeaderBoard();
         timeBR = 0;
+    }
+
+    public void OpenTacticsScreen()
+    {
+        inTacticsScreen = true;
+        TacticsOpen = true;
+        Leaderboard.Instance.GetLeaderBoard();
+        timeT = 0;
     }
 
     public void OpenSettingScreen()
@@ -223,6 +287,22 @@ public class MainMenuManager : MonoBehaviour
             ResetToBombRush();
             timeBR += Time.deltaTime * SpeedOfBR;
             timeBR = Mathf.Clamp(timeBR, 0, LerpTimeBR);
+        }
+
+
+
+
+        if (inTacticsScreen)
+        {
+            TransitionToTactics();
+            timeT += Time.deltaTime * SpeedOfT;
+            timeT = Mathf.Clamp(timeT, 0, LerpTimeT);
+        }
+        else if (TacticsOpen)
+        {
+            ResetToTactics();
+            timeT += Time.deltaTime * SpeedOfT;
+            timeT = Mathf.Clamp(timeT, 0, LerpTimeT);
         }
 
 
