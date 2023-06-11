@@ -12,6 +12,7 @@ public class SpawnDynamite : MonoBehaviour
     private void Start()
     {
         SD = this;
+        ReloadDynamite();
     }
 
     IEnumerator Reload()
