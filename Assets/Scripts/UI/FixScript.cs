@@ -8,6 +8,10 @@ public class FixScript : MonoBehaviour
     {
         StartGame.instance.StartGames();
     }
+    public void PlayTactics()
+    {
+        StartGame.instance.StartGames();
+    }
 
     // Start is called before the first frame update
     void Start()
