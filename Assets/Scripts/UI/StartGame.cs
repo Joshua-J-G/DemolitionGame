@@ -39,7 +39,8 @@ public class StartGame : MonoBehaviour
             return;
         }
         //Loads the tutorial Level Which is Managed by the Gamemanager there is 2 options if you want something like this (add to my code to add tactics or create your own version of Gamemanger for bombrush) i'll let you choose
-        SceneManager.LoadScene(Gamemanager.instance.Tutorial);
+        
+        LevelLoader.Instance.LoadLevel(Gamemanager.instance.Tutorial);
         //Destory the old gamemanager (this is done to stop the pervious gamemanager score,time,weapons ect from transfering over) it just resets the game competly a new version of the game manager is created apon loading the new scene 
         Destroy(Gamemanager.instance.gameObject);
 

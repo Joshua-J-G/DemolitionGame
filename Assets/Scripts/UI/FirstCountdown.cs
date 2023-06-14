@@ -106,11 +106,13 @@ public class FirstCountdown : MonoBehaviour
 
                         if (Gamemanager.instance.CurrentLevel == Gamemanager.instance.SmallLevels.Last())
                         {
-                            SceneManager.LoadScene(Gamemanager.instance.Shop);
+                           
+                            LevelLoader.Instance.LoadLevel(Gamemanager.instance.Shop);
                         }
                         else
                         {
-                            SceneManager.LoadScene(Gamemanager.instance.SmallLevels[Gamemanager.instance.SmallLevels.IndexOf(Gamemanager.instance.CurrentLevel) + 1]);
+                            
+                            LevelLoader.Instance.LoadLevel(Gamemanager.instance.SmallLevels[Gamemanager.instance.SmallLevels.IndexOf(Gamemanager.instance.CurrentLevel) + 1]);
                         }
 
 
@@ -154,13 +156,14 @@ public class FirstCountdown : MonoBehaviour
 
                         if(Gamemanager.instance.CurrentLevel == Gamemanager.instance.SmallLevels.Last())
                         {
-                                SceneManager.LoadScene(Gamemanager.instance.Shop);
-                        }else
+                                LevelLoader.Instance.LoadLevel(Gamemanager.instance.Shop);
+                            }
+                            else
                         {
 
 
-                                SceneManager.LoadScene(Gamemanager.instance.SmallLevels[Gamemanager.instance.SmallLevels.IndexOf(Gamemanager.instance.CurrentLevel) + 1]);
-                        }
+                                LevelLoader.Instance.LoadLevel(Gamemanager.instance.SmallLevels[Gamemanager.instance.SmallLevels.IndexOf(Gamemanager.instance.CurrentLevel) + 1]);
+                            }
 
 
 
