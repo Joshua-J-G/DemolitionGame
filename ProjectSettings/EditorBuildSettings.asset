@@ -26,4 +26,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Shop.unity
     guid: 4e9cfbcae6deec0449de2895212ab88d
+  - enabled: 1
+    path: Assets/Scenes/Tatctics/Tactics.unity
+    guid: d7f0a7941e9a3444f8a7a13f14e6efbd
   m_configObjects: {}
