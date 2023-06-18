@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+
+    public static PlayerMovement Instance;
+
     [Header("Player Atributes")]
     [SerializeField]private float Speed = 15f;
     [SerializeField] private float groundSphereCheckS = 0.2f;
@@ -16,6 +19,9 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField] private GameObject GroundCheck;
     [SerializeField] private LayerMask Ground;
     [SerializeField] private CharacterController CC;
+
+
+    public SpawnDynamite Dynamite;
    
 
     private Vector3 Velocity;

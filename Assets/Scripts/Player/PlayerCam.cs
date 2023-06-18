@@ -1,12 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerCam : MonoBehaviour
 {
     [Header("Player Cam Settings")]
      private float MouseSensitivity = 100f;
-
+     private float FOV = 60f;
     [SerializeField] private Transform PlayerBody;
 
 
@@ -16,6 +17,8 @@ public class PlayerCam : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         MouseSensitivity = StartGame.instance.MouseSensitivity;
+        FOV = StartGame.instance.FOV;
+        Camera.main.fieldOfView = FOV;
     }
 
     // Update is called once per frame
@@ -35,4 +38,6 @@ public class PlayerCam : MonoBehaviour
         PlayerBody.Rotate(Vector3.up * MX);
         
     }
+
+
 }
