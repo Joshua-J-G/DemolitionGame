@@ -22,9 +22,9 @@ public class StartGame : MonoBehaviour
     public float Sound = 100f;
 
     //sets the players name
-    public void SetName(string name)
+    public void SetName(string nameop)
     {
-        Name = name;
+        Name = nameop;
     }
 
     /// <summary>

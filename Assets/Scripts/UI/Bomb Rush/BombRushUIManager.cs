@@ -49,6 +49,7 @@ public class BombRushUIManager : MonoBehaviour
     public void UpdateCharCount(string text)
     {
         PlayerUserName = text;
+        StartGame.instance.SetName(PlayerUserName);
         CharCount.text = (Username.characterLimit - PlayerUserName.Length).ToString();
 
         if(PlayerUserName == null || PlayerUserName == "")
