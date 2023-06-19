@@ -28,7 +28,7 @@ public class Gamemanager : MonoBehaviour
     public bool IsTutorialMode = false;
 
 
-
+    public GameObject Dynamite;
 
     public Levels LevelSize;
 
@@ -112,9 +112,19 @@ public class Gamemanager : MonoBehaviour
 
 
     // Start is called before the first frame update
+
+    public GameObject PrefabC4;
+
     void Start()
     {
-        
+        //Set the cost of Weapon Values
+        WeaponValues.C4 = new Weapon();
+        WeaponValues.C4.LevelType = Levels.Small;
+        WeaponValues.C4.Cost = 400;
+        WeaponValues.C4.WeaponName = "C4";
+        WeaponValues.C4.Prefab = PrefabC4;
+
+
     }
 
     // Update is called once per frame

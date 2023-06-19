@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -45,15 +46,27 @@ public class ShopManager : MonoBehaviour
     //Reference to the base image
     [SerializeField] Image Background;
 
-
+    [SerializeField] TMP_Text Points;
 
     //all buttons and gameobject that are on the right tab go here
     [Header("Right Gameobjects")]
     [SerializeField] Sprite BackgroundRight;
+    [SerializeField] GameObject RightSide;
 
     //all buttons and gameobject that are on the left tab go here
     [Header("Left Gameobjects")]
     [SerializeField] Sprite BackgroundLeft;
+    [SerializeField] GameObject LeftSide;
+
+
+
+
+    [Header("Weapon Holder")]
+    [SerializeField] Image buttonSprite;
+    [SerializeField] TMP_Text weaponName;
+    [SerializeField] TMP_Text weaponProce;
+
+
 
 
 
@@ -63,6 +76,9 @@ public class ShopManager : MonoBehaviour
     public void ShopRight()
     {
         Background.sprite = BackgroundRight;
+        RightSide.SetActive(true);
+        LeftSide.SetActive(false);
+
     }
 
     /// <summary>
@@ -71,7 +87,25 @@ public class ShopManager : MonoBehaviour
     public void ShopLeft()
     {
         Background.sprite = BackgroundLeft;
+        RightSide.SetActive(false);
+        LeftSide.SetActive(true);
     }
+
+    public void BuyWeapon()
+    {
+        switch(WeaponValues.WeaponSelect)
+        {
+            case 0:
+                if (Gamemanager.instance.TotalPoints - WeaponValues.C4.Cost > 0)
+                {
+                    Gamemanager.instance.TotalPoints -= WeaponValues.C4.Cost;
+                    Gamemanager.instance.Dynamite = WeaponValues.C4.Prefab;
+                }
+
+            break;
+        }
+    }
+
 
 
     /// <summary>
@@ -102,11 +136,20 @@ public class ShopManager : MonoBehaviour
 
         //this removes a second from the timer
         Gamemanager.instance.time--;
+
+        switch (WeaponValues.WeaponSelect)
+        {
+            case 0:
+                weaponName.text = WeaponValues.C4.WeaponName;
+                weaponProce.text = WeaponValues.C4.Cost.ToString();
+                break;
+        }
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Points.text = Gamemanager.instance.TotalPoints.ToString();
     }
 }
