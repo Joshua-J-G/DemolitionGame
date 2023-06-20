@@ -42,7 +42,7 @@ public class Gamemanager : MonoBehaviour
     public List<string> SmallLevels = new List<string>();
     public List<string> MediumLevels = new List<string>();
     public List<string> LargeLevels = new List<string>();
-
+    public List<string> TacticLevels = new List<string>();
 
     private void Awake()
     {
