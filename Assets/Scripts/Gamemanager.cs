@@ -114,6 +114,8 @@ public class Gamemanager : MonoBehaviour
     // Start is called before the first frame update
 
     public GameObject PrefabC4;
+    public GameObject ToonBomb;
+
 
     void Start()
     {
@@ -123,6 +125,12 @@ public class Gamemanager : MonoBehaviour
         WeaponValues.C4.Cost = 400;
         WeaponValues.C4.WeaponName = "C4";
         WeaponValues.C4.Prefab = PrefabC4;
+
+        WeaponValues.ToonBomb = new Weapon();
+        WeaponValues.ToonBomb.LevelType = Levels.Small;
+        WeaponValues.ToonBomb.Cost = 800;
+        WeaponValues.ToonBomb.WeaponName = "ToonBomb";
+        WeaponValues.ToonBomb.Prefab = ToonBomb;
 
 
     }

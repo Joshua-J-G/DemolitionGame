@@ -63,6 +63,8 @@ MonoBehaviour:
   - Level5
   MediumLevels: []
   LargeLevels: []
+  TacticLevels: []
   Points: 0
   TotalPoints: 0
   PrefabC4: {fileID: 661034708427955400, guid: 221f89f196d9c95499e9126b31143418, type: 3}
+  ToonBomb: {fileID: 30003270871683808, guid: 9cb2836301870564d903ed95328c5056, type: 3}

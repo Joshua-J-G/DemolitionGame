@@ -100,9 +100,21 @@ public class ShopManager : MonoBehaviour
                 {
                     Gamemanager.instance.TotalPoints -= WeaponValues.C4.Cost;
                     Gamemanager.instance.Dynamite = WeaponValues.C4.Prefab;
+                    WeaponValues.WeaponSelect++;
                 }
 
             break;
+
+            case 1:
+                if (Gamemanager.instance.TotalPoints - WeaponValues.ToonBomb.Cost > 0)
+                {
+                    Gamemanager.instance.TotalPoints -= WeaponValues.ToonBomb.Cost;
+                    Gamemanager.instance.Dynamite = WeaponValues.ToonBomb.Prefab;
+                    WeaponValues.WeaponSelect++;
+                }
+
+                break;
+
         }
     }
 
@@ -137,13 +149,7 @@ public class ShopManager : MonoBehaviour
         //this removes a second from the timer
         Gamemanager.instance.time--;
 
-        switch (WeaponValues.WeaponSelect)
-        {
-            case 0:
-                weaponName.text = WeaponValues.C4.WeaponName;
-                weaponProce.text = WeaponValues.C4.Cost.ToString();
-                break;
-        }
+       
 
     }
 
@@ -151,5 +157,16 @@ public class ShopManager : MonoBehaviour
     void Update()
     {
         Points.text = Gamemanager.instance.TotalPoints.ToString();
+        switch (WeaponValues.WeaponSelect)
+        {
+            case 0:
+                weaponName.text = WeaponValues.C4.WeaponName;
+                weaponProce.text = WeaponValues.C4.Cost.ToString();
+                break;
+            case 1:
+                weaponName.text = WeaponValues.ToonBomb.WeaponName;
+                weaponProce.text = WeaponValues.ToonBomb.Cost.ToString();
+                break;
+        }
     }
 }

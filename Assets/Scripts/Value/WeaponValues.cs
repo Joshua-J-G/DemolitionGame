@@ -18,5 +18,7 @@ public static class WeaponValues
     public static Weapon CurrentWeapon;
 
     public static Weapon C4;
- 
+
+    public static Weapon ToonBomb;
+
 }
