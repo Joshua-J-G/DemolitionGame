@@ -66,16 +66,16 @@ public class StartGame : MonoBehaviour
         }
         else
         {
-
-            Destroy(gameObject);
+            instance.music.Stop();
+            
             BombRushUIManager.instance.Username.text = StartGame.instance.Name;
-            TacticsUIMenu.instance.Username.text = StartGame.instance.Name;
+          
             Debug.Log("Called");
             BombRushUIManager.instance.Username.ForceLabelUpdate();
-            TacticsUIMenu.instance.Username.ForceLabelUpdate();
+       
             BombRushUIManager.instance.MaxScoreboard.text = StartGame.instance.highestscore.ToString();
-            TacticsUIMenu.instance.MaxScoreboard.text = StartGame.instance.highestscoreTactics.ToString();
-
+       
+            Destroy(gameObject);
         }
     }
     // Update is called once per frame

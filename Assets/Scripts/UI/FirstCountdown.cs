@@ -61,7 +61,7 @@ public class FirstCountdown : MonoBehaviour
 
 
 
-
+        GradeCaculator();
 
 
         CountdownBeforereal.text = (Mathf.Round(time)+1).ToString();
@@ -179,6 +179,16 @@ public class FirstCountdown : MonoBehaviour
 
                         break;
                         case Levels.Medium:
+                            if (Gamemanager.instance.CurrentLevel == Gamemanager.instance.MediumLevels.Last())
+                            {
+
+                                LevelLoader.Instance.LoadLevel(Gamemanager.instance.Shop);
+                            }
+                            else
+                            {
+
+                                LevelLoader.Instance.LoadLevel(Gamemanager.instance.MediumLevels[Gamemanager.instance.MediumLevels.IndexOf(Gamemanager.instance.CurrentLevel) + 1]);
+                            }
                             break;
                         case Levels.Large:
                             break;
@@ -207,9 +217,44 @@ public class FirstCountdown : MonoBehaviour
 
     public void GradeCaculator()
     {
+        if (Mathf.RoundToInt(TotalTime) >= 0 && PercentageDestroyed.text == "100%")
+        {
+            Percentage.color = UnityEngine.Color.white;
+            //Grade B
+            Grade.text = "B";
 
+            SuccessImage.sprite = sus;
+        }
+
+        if (Mathf.RoundToInt(TotalTime) >= 3 && PercentageDestroyed.text == "100%")
+        {
+            Percentage.color = UnityEngine.Color.white;
+            //Grade A
+            Grade.text = "A";
+
+            SuccessImage.sprite = sus;
+        }
+
+        if (Mathf.RoundToInt(TotalTime) >= 6 && PercentageDestroyed.text == "100%")
+        {
+            Percentage.color = UnityEngine.Color.white;
+            //Grade S
+            Grade.text = "S";
+
+            SuccessImage.sprite = sus;
+        }
+
+        if (Mathf.RoundToInt(TotalTime) >= 9 && PercentageDestroyed.text == "100%")
+        {
+            Percentage.color = UnityEngine.Color.white;
+            //Grade S+
+            Grade.text = "S+";
+
+            SuccessImage.sprite = sus;
+        }
         if ((((float)Gamemanager.instance.DestroyedItemsInSystem / (float)Gamemanager.instance.AmountOfItemsInSystem) * 100f) < 90)
         {
+            Percentage.color = UnityEngine.Color.white;
             //Grade C
             Grade.text = "C";
             SuccessImage.sprite = sus;
@@ -218,12 +263,14 @@ public class FirstCountdown : MonoBehaviour
         if ((((float)Gamemanager.instance.DestroyedItemsInSystem / (float)Gamemanager.instance.AmountOfItemsInSystem) * 100f) < 70)
         {
             //Grade D
+            Percentage.color = UnityEngine.Color.red;
             Grade.text = "D";
             SuccessImage.sprite = fail;
         }
 
         if ((((float)Gamemanager.instance.DestroyedItemsInSystem / (float)Gamemanager.instance.AmountOfItemsInSystem) * 100f) == 0)
         {
+            Percentage.color = UnityEngine.Color.red;
             //Grade E
             Grade.text = "E";
             SuccessImage.sprite = fail;
@@ -232,37 +279,6 @@ public class FirstCountdown : MonoBehaviour
       
 
 
-        if (Mathf.RoundToInt(TotalTime) >= 0 && PercentageDestroyed.text == "100%")
-        {
-            //Grade B
-            Grade.text = "B";
-            
-            SuccessImage.sprite = sus;
-        }
-
-        if (Mathf.RoundToInt(TotalTime) >= 3 && PercentageDestroyed.text == "100%")
-        {
-            //Grade A
-            Grade.text = "A";
-            
-            SuccessImage.sprite = sus;
-        }
-
-        if (Mathf.RoundToInt(TotalTime) >= 6 && PercentageDestroyed.text == "100%")
-        {
-            //Grade S
-            Grade.text = "S";
-            
-            SuccessImage.sprite = sus;
-        }
-
-        if (Mathf.RoundToInt(TotalTime) >= 9 && PercentageDestroyed.text == "100%")
-        {
-            //Grade S+
-            Grade.text = "S+";
-            
-            SuccessImage.sprite = sus;
-        }
 
 
     }

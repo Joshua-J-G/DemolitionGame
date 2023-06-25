@@ -76,7 +76,7 @@ public class Gamemanager : MonoBehaviour
 
     public void GameEnd()
     {
-        SceneManager.LoadScene(MainMenu);
+    
 
         BombRushUIManager.instance.Username.text = StartGame.instance.Name;
 
@@ -88,6 +88,7 @@ public class Gamemanager : MonoBehaviour
   
   
         Leaderboard.Instance.SetLeaderboardEntry(StartGame.instance.Name, TotalPoints);
+        SceneManager.LoadScene(MainMenu);
 
     }
 

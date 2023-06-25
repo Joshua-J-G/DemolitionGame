@@ -251,12 +251,6 @@ public class MainMenuManager : MonoBehaviour
 
         
 
-        if(Screen.fullScreen && !hasUpdatedScreen)
-        {
-            hasUpdatedScreen = true;
-            SceneManager.LoadScene(Gamemanager.instance.MainMenu);
-        }
-
         if (Input.anyKeyDown)
         {
             if (Input.GetKeyDown(cheats[index]) && !cheatsmenuopen)
