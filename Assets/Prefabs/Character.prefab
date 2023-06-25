@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 677863714704343196}
   - component: {fileID: 677863714704343197}
   - component: {fileID: 677863714704343185}
+  - component: {fileID: 7836248356150123492}
   m_Layer: 7
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -108,7 +109,7 @@ MonoBehaviour:
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 257
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
@@ -134,6 +135,23 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   PlayerBody: {fileID: 677863716318498402}
+--- !u!114 &7836248356150123492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 677863714704343198}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 172515602e62fb746b5d573b38a5fe58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_IsGlobal: 1
+  priority: 0
+  blendDistance: 0
+  weight: 1
+  sharedProfile: {fileID: 11400000, guid: e71b249130a8c8741803a19cb968761f, type: 2}
 --- !u!1 &677863716318498412
 GameObject:
   m_ObjectHideFlags: 0
