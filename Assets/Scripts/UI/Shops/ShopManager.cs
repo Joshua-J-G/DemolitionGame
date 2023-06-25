@@ -81,6 +81,28 @@ public class ShopManager : MonoBehaviour
 
     }
 
+    
+
+    public void BuyTime()
+    {
+        if(Gamemanager.instance.TotalPoints - 1000 >= 0)
+        {
+            Gamemanager.instance.TotalPoints -= 1000;
+            Gamemanager.instance.time++;
+        }
+
+    }
+
+    public void BuyMovementSpeed()
+    {
+        if (Gamemanager.instance.TotalPoints - 500 >= 0)
+        {
+            Gamemanager.instance.TotalPoints -= 500;
+            Gamemanager.instance.Speed++;
+        }
+    }
+
+
     /// <summary>
     /// Flip the image to be shop left
     /// </summary>
@@ -96,7 +118,7 @@ public class ShopManager : MonoBehaviour
         switch(WeaponValues.WeaponSelect)
         {
             case 0:
-                if (Gamemanager.instance.TotalPoints - WeaponValues.C4.Cost > 0)
+                if (Gamemanager.instance.TotalPoints - WeaponValues.C4.Cost >= 0)
                 {
                     Gamemanager.instance.TotalPoints -= WeaponValues.C4.Cost;
                     Gamemanager.instance.Dynamite = WeaponValues.C4.Prefab;
@@ -106,10 +128,20 @@ public class ShopManager : MonoBehaviour
             break;
 
             case 1:
-                if (Gamemanager.instance.TotalPoints - WeaponValues.ToonBomb.Cost > 0)
+                if (Gamemanager.instance.TotalPoints - WeaponValues.ToonBomb.Cost >= 0)
                 {
                     Gamemanager.instance.TotalPoints -= WeaponValues.ToonBomb.Cost;
                     Gamemanager.instance.Dynamite = WeaponValues.ToonBomb.Prefab;
+                    WeaponValues.WeaponSelect++;
+                }
+
+                break;
+            case 2:
+                if (Gamemanager.instance.TotalPoints - WeaponValues.MiniNuke.Cost >= 0)
+                {
+                    Gamemanager.instance.TotalPoints -= WeaponValues.MiniNuke.Cost;
+                    Gamemanager.instance.Dynamite = WeaponValues.MiniNuke.Prefab;
+                    Gamemanager.instance.LevelSize = WeaponValues.MiniNuke.LevelType;
                     WeaponValues.WeaponSelect++;
                 }
 
@@ -132,7 +164,7 @@ public class ShopManager : MonoBehaviour
                 SceneManager.LoadScene(Gamemanager.instance.SmallLevels[0]);
                 break;
             case Levels.Medium:
-
+                SceneManager.LoadScene(Gamemanager.instance.MediumLevels[0]);
                 break;
             case Levels.Large:
 
@@ -166,6 +198,10 @@ public class ShopManager : MonoBehaviour
             case 1:
                 weaponName.text = WeaponValues.ToonBomb.WeaponName;
                 weaponProce.text = WeaponValues.ToonBomb.Cost.ToString();
+                break;
+            case 2:
+                weaponName.text = WeaponValues.MiniNuke.WeaponName;
+                weaponProce.text = WeaponValues.MiniNuke.Cost.ToString();
                 break;
         }
     }

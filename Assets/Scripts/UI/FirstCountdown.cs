@@ -119,6 +119,16 @@ public class FirstCountdown : MonoBehaviour
 
                         break;
                     case Levels.Medium:
+                        if (Gamemanager.instance.CurrentLevel == Gamemanager.instance.MediumLevels.Last())
+                        {
+
+                            LevelLoader.Instance.LoadLevel(Gamemanager.instance.Shop);
+                        }
+                        else
+                        {
+
+                            LevelLoader.Instance.LoadLevel(Gamemanager.instance.MediumLevels[Gamemanager.instance.MediumLevels.IndexOf(Gamemanager.instance.CurrentLevel) + 1]);
+                        }
                         break;
                     case Levels.Large:
                         break;

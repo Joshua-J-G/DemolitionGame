@@ -19,10 +19,12 @@ public class Dynamite : MonoBehaviour
     [SerializeField] private float explosionForce;
 
     [SerializeField] private float explosionRadius;
+
+    [SerializeField] private AudioSource explosion;
     // Start is called before the first frame update
     void Start()
     {
-        
+        explosion.volume = StartGame.instance.Sound / 100f;
     }
 
     // Update is called once per frame
@@ -48,7 +50,7 @@ public class Dynamite : MonoBehaviour
         {
             return;
         }
-        Destroy(this.gameObject,1f);
+        Destroy(this.gameObject,0.7f);
 
       
 
@@ -79,5 +81,6 @@ public class Dynamite : MonoBehaviour
         smoke.Play();
         Glow.Play(); 
         Trails.Play();
+        explosion.Play();
     }
 }

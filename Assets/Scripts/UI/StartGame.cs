@@ -19,6 +19,8 @@ public class StartGame : MonoBehaviour
 
     public float FOV = 60f;
 
+    public AudioSource music;
+
     public float Sound = 100f;
 
     //sets the players name
@@ -43,6 +45,9 @@ public class StartGame : MonoBehaviour
         LevelLoader.Instance.LoadLevel(Gamemanager.instance.Tutorial);
         //Destory the old gamemanager (this is done to stop the pervious gamemanager score,time,weapons ect from transfering over) it just resets the game competly a new version of the game manager is created apon loading the new scene 
         Destroy(Gamemanager.instance.gameObject);
+        music.volume = 0.5f * (Sound/100f);
+        music.Play();
+        
 
        
     }

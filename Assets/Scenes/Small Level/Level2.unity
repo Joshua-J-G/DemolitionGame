@@ -1155,7 +1155,7 @@ MonoBehaviour:
   priority: 0
   blendDistance: 0
   weight: 1
-  sharedProfile: {fileID: 11400000, guid: 10be42b1d0b03ff47891ee23505e57d6, type: 2}
+  sharedProfile: {fileID: 11400000, guid: 6887bca10179a7f488cb1ed8218ab154, type: 2}
 --- !u!4 &1160234427
 Transform:
   m_ObjectHideFlags: 0
@@ -1427,6 +1427,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 677863714704343197, guid: 933be1cfce41ae84a83272a47a8ba944, type: 3}
+      propertyPath: m_RendererIndex
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 677863716318498402, guid: 933be1cfce41ae84a83272a47a8ba944, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -1475,6 +1479,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Character
       objectReference: {fileID: 0}
+    - target: {fileID: 7836248356150123492, guid: 933be1cfce41ae84a83272a47a8ba944, type: 3}
+      propertyPath: m_IsGlobal
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7836248356150123492, guid: 933be1cfce41ae84a83272a47a8ba944, type: 3}
+      propertyPath: sharedProfile
+      value: 
+      objectReference: {fileID: 11400000, guid: 6887bca10179a7f488cb1ed8218ab154, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 933be1cfce41ae84a83272a47a8ba944, type: 3}
 --- !u!1001 &1677427088

@@ -30,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
     void Start()
     {
         Gamemanager.instance.RoundStarted();
+        Speed += Gamemanager.instance.Speed;
     }
 
     // Update is called once per frame

@@ -25,6 +25,8 @@ public class Gamemanager : MonoBehaviour
 
     public float time = 10f;
 
+    public float Speed = 0;
+
     public bool IsTutorialMode = false;
 
 
@@ -115,22 +117,31 @@ public class Gamemanager : MonoBehaviour
 
     public GameObject PrefabC4;
     public GameObject ToonBomb;
-
+    public GameObject miniNuke;
 
     void Start()
     {
         //Set the cost of Weapon Values
         WeaponValues.C4 = new Weapon();
         WeaponValues.C4.LevelType = Levels.Small;
-        WeaponValues.C4.Cost = 400;
+        WeaponValues.C4.Cost = 1200;
+        //WeaponValues.C4.Cost = 100;
         WeaponValues.C4.WeaponName = "C4";
         WeaponValues.C4.Prefab = PrefabC4;
 
         WeaponValues.ToonBomb = new Weapon();
         WeaponValues.ToonBomb.LevelType = Levels.Small;
-        WeaponValues.ToonBomb.Cost = 800;
+        WeaponValues.ToonBomb.Cost = 3000;
+        //WeaponValues.ToonBomb.Cost = 100;
         WeaponValues.ToonBomb.WeaponName = "ToonBomb";
         WeaponValues.ToonBomb.Prefab = ToonBomb;
+
+        WeaponValues.MiniNuke = new Weapon();
+        WeaponValues.MiniNuke.LevelType = Levels.Medium;
+        WeaponValues.MiniNuke.Cost = 5200;
+        //WeaponValues.MiniNuke.Cost = 100;
+        WeaponValues.MiniNuke.WeaponName = "Mini Nuke";
+        WeaponValues.MiniNuke.Prefab = miniNuke;
 
 
     }

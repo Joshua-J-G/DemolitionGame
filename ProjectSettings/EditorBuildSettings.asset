@@ -29,4 +29,13 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Tatctics/Tactics.unity
     guid: d7f0a7941e9a3444f8a7a13f14e6efbd
+  - enabled: 1
+    path: Assets/Scenes/Med Levels/Level 6.unity
+    guid: cafdae23e1a2150429ed4b2da8714d92
+  - enabled: 1
+    path: Assets/Scenes/Med Levels/Level7.unity
+    guid: a1f88b974e0234c4aac24f3352f96343
+  - enabled: 1
+    path: Assets/Scenes/Med Levels/Level8.unity
+    guid: 7f28696e44e2c0a4d84991bc81d54ba4
   m_configObjects: {}

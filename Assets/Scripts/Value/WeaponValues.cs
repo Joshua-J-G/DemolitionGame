@@ -21,4 +21,6 @@ public static class WeaponValues
 
     public static Weapon ToonBomb;
 
+    public static Weapon MiniNuke;
+
 }
